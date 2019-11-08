@@ -2,7 +2,7 @@ const mysql = require('mysql2/promise');
 const dotenv = require('dotenv');
 let pool;
 
-exports.initDb = () => {
+exports.initDb = async () => {
     if (process.env.NODE_ENV === 'development')
         dotenv.config({ path: './config.env' });
     if (pool) {
@@ -10,7 +10,7 @@ exports.initDb = () => {
         throw new Error('DB already connected! Do not reconnect!');
     } else {
         // eslint-disable-next-line require-atomic-updates
-        pool = mysql.createPool({
+        pool = await mysql.createConnection({
             host: process.env.DATABASE_IP,
             database: process.env.DATABASE_NAME,
             user: process.env.DATABASE_USER,

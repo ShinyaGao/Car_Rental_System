@@ -14,7 +14,7 @@ const createCustomer = async function(req, res, next) {
     VALUES("${name}", "${phone}", "${driverLicense}")
     `);
 
-    res.status(201)
+    return res.status(201).json({driverLicense, phone, name});
 };
 
-module.exports = createCustomer;
+module.exports = createCustomer;^
