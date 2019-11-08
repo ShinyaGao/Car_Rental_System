@@ -1,5 +1,5 @@
 const database = require ('../db').getDb();
-// create customer, template
+// create customer, template dfdf
 const createCustomer = async function(req, res, next) {
     const { driverLicense, phone, name } = req.body;
 
