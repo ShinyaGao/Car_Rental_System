@@ -3,8 +3,11 @@ const dotenv = require('dotenv');
 let pool;
 
 exports.initDb = async () => {
-    if (process.env.NODE_ENV === 'development')
+    //if (process.env.NODE_ENV === 'development')
         dotenv.config({ path: './config.env' });
+
+    console.log(`${process.env.DATABASE_IP}`);
+
     if (pool) {
         console.log('DB already connected! Do not reconnect!');
         throw new Error('DB already connected! Do not reconnect!');
@@ -16,6 +19,7 @@ exports.initDb = async () => {
             user: process.env.DATABASE_USER,
             password: process.env.DATABASE_PASSWORD,
             multipleStatements: true
+            //port: 3307
         });
         // await pool.query(`USE superRentDatabase;`);
         console.log('👌 DB connected');
