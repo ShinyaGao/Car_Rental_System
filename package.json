@@ -10,20 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Max980109/CarRentals.git"
+    "url": "git+https://github.com/ShinyaGao/Car_Rental_System.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Max980109/CarRentals/issues"
+    "url": "https://github.com/ShinyaGao/Car_Rental_System/issues"
   },
-  "homepage": "https://github.com/Max980109/CarRentals#readme",
+  "homepage": "https://github.com/ShinyaGao/Car_Rental_System#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "mysql2": "^2.0.0"
+    "mysql2": "^2.0.0",
+    "node": "^13.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
