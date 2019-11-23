@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const customerRoutes = require('./routes/customerRoutes');
+const rentRoutes = require('./routes/rentRoutes');
 
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -26,6 +27,7 @@ app.use(handleOptionsRequest);
 app.use(cors()); // magical function don't know why it works but dont delete it!!!
 app.use(express.json()); // Body parser
 app.use('/customers', customerRoutes);
+app.use('/rents', rentRoutes);
 
 
 module.exports = app;

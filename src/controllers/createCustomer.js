@@ -1,7 +1,7 @@
 const database = require ('../db').getDb();
 // create customer, template dfdf
 const createCustomer = async function(req, res, next) {
-    const { driverLicense, phone, name } = req.body;
+    const {driverLicense, phone, name } = req.body;
 
 
     await database.query(`CREATE TABLE IF NOT EXISTS customers(
