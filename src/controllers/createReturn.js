@@ -14,12 +14,12 @@ const createReturn = async (req, res, next) => {
                     rentId VARCHAR(50) PRIMARY KEY,
                     date DATE NOT NULL,
                     price INT NOT NULL,
-                    returnMessage VARCHAR(500),
                     CONSTRAINT return_rent FOREIGN KEY (rentId) REFERENCES rents(rentId) ON DELETE CASCADE
             )
             `
     );
 
+    /*
     // calculate price
     // given rentId, get rent, then get vehicleLicence and fromDate of the rent
     let rent = await database.query(`SELECT * FROM rents WHERE rentId = "${rentId}"`);
@@ -48,13 +48,14 @@ const createReturn = async (req, res, next) => {
         Total price = ${dayRate} * ${diffDays} = ${price}
     `;
     //log.info(returnMessage);
+    */
 
     // send query
-
+    // TODO: will implement price calculation later, for now just use 100 as a placeholder
     let results = await database.query(
         `
-            INSERT INTO returns(rentId, date, price, returnMessage)
-            VALUES("${rentId}", STR_TO_DATE("${endDate}", "%Y-%m-%d"), ${price}, "${returnMessage}");
+            INSERT INTO returns(rentId, date, price)
+            VALUES("${rentId}", STR_TO_DATE("${endDate}", "%Y-%m-%d"), 100);
         `
     );
     results = await database.query(`SELECT * FROM returns where rentId = "${rentId}"`);
