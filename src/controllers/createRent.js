@@ -8,7 +8,6 @@ const createRent = async (req, res, next) => {
     const toDate = req.body.toDate.split('T')[0];
     const confNum = req.body.confNum;
 
-
     await database.query(`CREATE TABLE IF NOT EXISTS rents(
             rentId VARCHAR(50) PRIMARY KEY,
             vehicleLicense VARCHAR(50) NOT NULL,
@@ -17,7 +16,7 @@ const createRent = async (req, res, next) => {
             toDate DATE NOT NULL,
             confNum VARCHAR(255) UNIQUE,
             CONSTRAINT rent_vehicle FOREIGN KEY (vehicleLicense) REFERENCES vehicles(vehicleLicense) ON DELETE CASCADE,
-            CONSTRAINT rent_customer FOREIGN KEY (driverLicense) REFERENCES customers(driverLicense) ON DELETE CASCADE
+            CONSTRAINT rent_customer FOREIGN KEY (driverLicense) REFERENCES customers(driverLicense) ON DELETE CASCADE 
     )`);
 
     const query = confNum
@@ -35,15 +34,15 @@ const createRent = async (req, res, next) => {
         `;
 
     await database.query(query);
-    let results = await database.query(`SELECT * FROM rents WHERE rentId = '${rentId}';`);
-
-    // prepare response
-    results = JSON.parse(JSON.stringify(results));
-    const createdRent = results[0][0];
-    createdRent.id = createdRent.rentId;
+    // results = await database.query(`SELECT * FROM rents WHERE rentId = '${rentId}';`);
+    //
+    // // prepare response
+    // results = JSON.parse(JSON.stringify(results));
+    // const createdRent = results[0][0];
+    // createdRent.id = createdRent.rentId;
 
     // send response
-    res.status(201).json(createdRent);
+    res.status(201).json({rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum});
 
 };
 

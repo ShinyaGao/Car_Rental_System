@@ -13,19 +13,7 @@ const createVehicle = async (req, res, next) => {
         city
     } = req.body;
 
-
-
-
-
     // send query
-    await database.query(
-        `
-            CREATE TABLE vehicleTypes(
-                    vehicleTypeName VARCHAR(50) PRIMARY KEY,
-                    dayRate INT UNSIGNED NOT NULL
-            )
-        `
-    );
 
     await database.query(
         `CREATE TABLE IF NOT EXISTS vehicles(
@@ -42,17 +30,6 @@ const createVehicle = async (req, res, next) => {
          )
         `
     );
-
-    const vehicleTypes = JSON.parse(
-        fs.readFileSync('src/dev-data/data/vehicleTypes.json', 'utf8')
-    );
-    for (const vehicleType of vehicleTypes) {
-        const { vehicleTypeName, dayRate } = vehicleType;
-        await database.query( `
-            INSERT INTO vehicleTypes(vehicleTypeName, dayRate)
-            VALUES("${vehicleTypeName}", ${dayRate});
-        `);
-    }
 
     await database.query(
         `
