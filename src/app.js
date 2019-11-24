@@ -22,7 +22,6 @@ const handleOptionsRequest = (req, res, next) => {
 };
 
 
-
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(handleOptionsRequest);
 app.use(cors()); // magical function don't know why it works but dont delete it!!!
