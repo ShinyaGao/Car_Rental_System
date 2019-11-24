@@ -34,9 +34,9 @@ const getAllRents = async (req, res, next) => {
         return rent;
     });
 
-    results = await database.query('SELECT COUNT(*) FROM rents');
-    results = JSON.parse(JSON.stringify(results));
-    const numRents = results[0][0]['COUNT(*)'];
+    //results = await database.query('SELECT COUNT(*) FROM rents');
+    //results = JSON.parse(JSON.stringify(results));
+    //const numRents = results[0][0]['COUNT(*)'];
 
     results = await database.query(`SELECT rentId from returns`);
     results = JSON.parse(JSON.stringify(results));
