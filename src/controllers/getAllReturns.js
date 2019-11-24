@@ -3,13 +3,8 @@ const database = require ('../db').getDb();
 const getAllRents = async (req, res, next) => {
     let query = 'SELECT * FROM rents';
 
-    // prepare query: filtering based on fromDate
-    if (req.query.fromDate)
-        query += ` WHERE fromDate = STR_TO_DATE("${req.query.fromDate}", "%Y-%m-%d")`;
-
-    // prepare query: sorting (everything except isReturned)
-    // sort isReturned at bottom because isReturned is not a attribute in rents relation
-    if (req.query._sort && req.query._order && req.query._sort !== 'isReturned') {
+    // prepare query: sorting
+    if (req.query._sort && req.query._order) {
         const sort = req.query._sort === 'id' ? 'rentId' : req.query._sort;
         const order = req.query._order;
         query += ` ORDER BY ${sort} ${order}`;
@@ -28,14 +23,14 @@ const getAllRents = async (req, res, next) => {
 
     // prepare response
     results = JSON.parse(JSON.stringify(results));
-    let rents = results[0];
-    rents = rents.map(rent => {
-        rent.id = rent.rentId;
-        return rent;
+    let returns = results[0];
+    returns = returns.map(ret => {
+        ret.id = ret.rentId;
+        return ret;
     });
 
     // send response
-    res.status(200).json(rents);
+    res.status(200).json(returns);
 };
 
 module.exports = getAllRents;
