@@ -34,18 +34,15 @@ const getAllRents = async (req, res, next) => {
         return rent;
     });
 
-    results = await database.query('SELECT COUNT(*) FROM rents');
-    results = JSON.parse(JSON.stringify(results));
-    const numRents = results[0][0]['COUNT(*)'];
 
-    results = await database.query(`SELECT rentId from returns`);
-    results = JSON.parse(JSON.stringify(results));
-    // rentId's of returned rents
-    const returnedRents = results[0].map(r => r.rentId);
-    rents = rents.map(rent => {
-        rent.isReturned = returnedRents.includes(rent.rentId);
-        return rent;
-    });
+    // results = await database.query(`SELECT rentId from returns`);
+    // results = JSON.parse(JSON.stringify(results));
+    // // rentId's of returned rents
+    // const returnedRents = results[0].map(r => r.rentId);
+    // rents = rents.map(rent => {
+    //     rent.isReturned = returnedRents.includes(rent.rentId);
+    //     return rent;
+    // });
 
     if (req.query._sort && req.query._sort === 'isReturned' && req.query._order) {
         if (req.query._order === 'ASC')

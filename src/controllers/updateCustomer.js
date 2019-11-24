@@ -1,21 +1,11 @@
 const database = require ('../db').getDb();
 
-//const SuperRentError = require('../../util/SuperRentError');
-
 const updateCustomer = async (req, res, next) => {
     // prepare query
    // const prevDriverLicense = req.params.id;
     const { driverLicense, phone, name } = req.body;
 
     let results;
-    // check if driversLicence already exists
-    // if (prevDriverLicense !== driverLicense) {
-    //     results = await database.query(
-    //         `SELECT COUNT(*) FROM customers WHERE driverLicense = "${driverLicense}";`
-    //     );
-    //     results = JSON.parse(JSON.stringify(results));
-    //     const count = results[0][0]['COUNT(*)'];
-    // }
 
     // send query
     await database.query(

@@ -30,10 +30,6 @@ const getAllCustomers = async (req, res, next) => {
         return customer;
     });
 
-    results = await database.query('SELECT COUNT(*) FROM customers');
-    results = JSON.parse(JSON.stringify(results));
-    const numCustomers = results[0][0]['COUNT(*)'];
-
     // send response
     return res.status(200).json(customers);
 };
