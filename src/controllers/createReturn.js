@@ -1,5 +1,4 @@
 const database = require('../db').getDb();
-//const log = require('../../util/log');
 const moment = require('moment');
 moment().format();
 
@@ -18,8 +17,6 @@ const createReturn = async (req, res, next) => {
             )
             `
     );
-
-    /*
     // calculate price
     // given rentId, get rent, then get vehicleLicence and fromDate of the rent
     let rent = await database.query(`SELECT * FROM rents WHERE rentId = "${rentId}"`);
@@ -42,23 +39,15 @@ const createReturn = async (req, res, next) => {
     // given vehicleType, get dayRate of the type, and calculate price of the rent
     const dayRate = vehicleType[0][0].dayRate;
     const price = dayRate * diffDays;
-    const returnMessage = `
-        This ${vehicleTypeName.toLowerCase()} vehicle (daily rate ${dayRate})
-        was rented for ${diffDays} days, from ${fromDate} to ${endDate}. 
-        Total price = ${dayRate} * ${diffDays} = ${price}
-    `;
-    //log.info(returnMessage);
-    */
 
     // send query
-    // TODO: will implement price calculation later, for now just use 100 as a placeholder
-    let results = await database.query(
+    await database.query(
         `
             INSERT INTO returns(rentId, date, price)
-            VALUES("${rentId}", STR_TO_DATE("${endDate}", "%Y-%m-%d"), 100);
+            VALUES("${rentId}", STR_TO_DATE("${endDate}", "%Y-%m-%d"), ${price});
         `
     );
-    results = await database.query(`SELECT * FROM returns where rentId = "${rentId}"`);
+    let results = await database.query(`SELECT * FROM returns where rentId = "${rentId}"`);
 
     results = JSON.parse(JSON.stringify(results));
     const createdReturn = results[0][0];

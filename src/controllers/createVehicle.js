@@ -1,5 +1,4 @@
 const database = require('../db').getDb();
-//const fs = require('fs');
 
 const createVehicle = async (req, res, next) => {
     // prepare query

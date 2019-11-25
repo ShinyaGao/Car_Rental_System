@@ -1,7 +1,8 @@
 const database = require ('../db').getDb();
 
-const getAllRents = async (req, res, next) => {
-    let query = 'SELECT * FROM rents';
+const getAllReturns = async (req, res, next) => {
+    // prepare query
+    let query = 'SELECT * FROM returns';
 
     // prepare query: sorting
     if (req.query._sort && req.query._order) {
@@ -33,4 +34,4 @@ const getAllRents = async (req, res, next) => {
     res.status(200).json(returns);
 };
 
-module.exports = getAllRents;
+module.exports = getAllReturns;
