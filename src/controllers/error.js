@@ -23,6 +23,8 @@ const getVehicle = tryAsync(require('./getVehicle'));
 const updateVehicle = tryAsync(require('./updateVehicle'));
 const deleteVehicle = tryAsync(require('./deleteVehicle'));
 const createVehicle = tryAsync(require('./createVehicle'));
+const reportDailyRents = tryAsync(require('./reportDailyRents'));
+const reportDailyReturns = tryAsync(require('./reportDailyReturns'));
 
 
 
@@ -52,5 +54,7 @@ module.exports = {
     getVehicle,
     updateVehicle,
     deleteVehicle,
-    createVehicle
+    createVehicle,
+    reportDailyRents,
+    reportDailyReturns
 };

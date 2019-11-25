@@ -1,5 +1,6 @@
 const database = require ('../db').getDb();
 
+
 const getAllVehicles = async (req, res, next) => {
     // prepare query
     let query =
@@ -30,9 +31,7 @@ const getAllVehicles = async (req, res, next) => {
         fromDate !== null && toDate !== null
             ? ` AND V.status <> "maintenance"
                 AND V.vehicleLicense NOT IN 
-                (SELECT R.vehicleLicense from rents as R 
-                    WHERE "${fromDate}" < R.toDate 
-                    AND "${toDate}" > R.fromDate)`
+                (SELECT R.vehicleLicense from rents as R WHERE "${fromDate}" < R.toDate AND "${toDate}" > R.fromDate)`
             : ''
     }
     `;
