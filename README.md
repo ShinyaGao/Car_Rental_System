@@ -15,4 +15,10 @@ This is a quick guide to setup the coding environment for our project.
    `npm install `
    
    `npm install moments`
+   
+4. For FrontEnd
 
+
+5. Acknowledgement:
+
+    We thank `Chuntong Gao` for providing high-level design guidance and additional help with debugging
