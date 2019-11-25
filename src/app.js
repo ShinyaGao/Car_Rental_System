@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const customerRoutes = require('./routes/customerRoutes');
 const rentRoutes = require('./routes/rentRoutes');
 const returnRoutes = require('./routes/returnRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
 
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -30,6 +31,7 @@ app.use(express.json()); // Body parser
 app.use('/customers', customerRoutes);
 app.use('/rents', rentRoutes);
 app.use('/returns', returnRoutes);
+app.use('/reservations', reservationRoutes);
 
 
 module.exports = app;

@@ -19,30 +19,19 @@ const createRent = async (req, res, next) => {
             
     )`);
 
-    const query = confNum
-        ? `
+
+    await database.query(
+        `
              INSERT INTO rents(rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum)
                 VALUES("${rentId}", "${vehicleLicense}", "${driverLicense}",
                         STR_TO_DATE("${fromDate}", "%Y-%m-%d"), STR_TO_DATE("${toDate}", "%Y-%m-%d"),
                         "${confNum}");
-           `
-        : `
-         INSERT INTO rents(rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum)
-                VALUES("${rentId}", "${vehicleLicense}", "${driverLicense}",
-                        STR_TO_DATE("${fromDate}", "%Y-%m-%d"), STR_TO_DATE("${toDate}", "%Y-%m-%d"),
-                        NULL);
-        `;
+        `
+    );
 
-    await database.query(query);
-    results = await database.query(`SELECT * FROM rents WHERE rentId = '${rentId}';`);
-
-    // prepare response
-    results = JSON.parse(JSON.stringify(results));
-    const createdRent = results[0][0];
-    createdRent.id = createdRent.rentId;
 
     // send response
-    res.status(201).json(createdRent);
+    res.status(201).json({rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum});
 
 };
 
