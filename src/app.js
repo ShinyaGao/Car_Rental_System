@@ -7,7 +7,7 @@ const vehicleRoutes = require('./routes/vehicleRoutes');
 const rentRoutes = require('./routes/rentRoutes');
 const returnRoutes = require('./routes/returnRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
-const reportRoutes = require('./routes/reservationRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
