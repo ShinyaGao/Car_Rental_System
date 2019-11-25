@@ -10,12 +10,12 @@ const viewVehicles = async(req, res, next) => {
     }
     else if (type != null && location != null) {
         tlquery = `
-        WHERE V.type == '${type}' AND
+        WHERE V.vtname == '${type}' AND
               V.location == '${location}'
         `
     }
     else if (type != null) {
-        tlquery = `WHERE V.type == '${type}'`
+        tlquery = `WHERE V.vtname == '${type}'`
     }
     else {
         tlquery = `WHERE V.location == '${location}'`

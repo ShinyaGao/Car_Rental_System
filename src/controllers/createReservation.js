@@ -6,6 +6,7 @@ const createReservation = async(req, res, next) => {
     await database.query(`
     CREATE TABLE IF NOT EXISTS reservations(
     confNo VARCHAR(20) NOT NULL,
+    vtname VARCHAR(50) NOT NULL,
     dLicense VARCHAR(50) NOT NULL,
     fromDate DATE,
     toDate DATE,
