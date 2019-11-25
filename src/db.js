@@ -19,7 +19,7 @@ exports.initDb = async () => {
             // database: process.env.DATABASE_NAME,
             // user: process.env.DATABASE_USER,
             // password: process.env.DATABASE_PASSWORD,
-            
+
             host: '35.185.198.213',
             database: 'car_rental',
             user: 'root',
@@ -27,7 +27,7 @@ exports.initDb = async () => {
             multipleStatements: true
             //port: 3307
         });
-        // await pool.query(`USE superRentDatabase;`);
+
         console.log('👌 DB connected');
     }
 };

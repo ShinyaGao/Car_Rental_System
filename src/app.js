@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const customerRoutes = require('./routes/customerRoutes');
+const vehicleRoutes = require('./routes/vehicleRoutes');
 const rentRoutes = require('./routes/rentRoutes');
 const returnRoutes = require('./routes/returnRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
@@ -32,6 +33,7 @@ app.use('/customers', customerRoutes);
 app.use('/rents', rentRoutes);
 app.use('/returns', returnRoutes);
 app.use('/reservations', reservationRoutes);
+app.use('/vehicles', vehicleRoutes);
 
 
 module.exports = app;
