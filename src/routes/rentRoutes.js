@@ -1,10 +1,10 @@
 const express = require('express');
-const createRent = require('../controllers/createRent');
-const getAllRents = require('../controllers/getAllRents');
-const getRent = require('../controllers/getRent');
+const createRent = require('../controllers/error').createRent;
+const getAllRents = require('../controllers/error').getAllRents;
+const getRent = require('../controllers/error').getRent;
 //const validateRent = require('../controllers/validateRent');
-const updateRent = require('../controllers/updateRent');
-const deleteRent = require('../controllers/deleteRent');
+const updateRent = require('../controllers/error').updateRent;
+const deleteRent = require('../controllers/error').deleteRent;
 
 
 const router = express.Router();
