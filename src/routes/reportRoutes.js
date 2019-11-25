@@ -1,6 +1,6 @@
 const express = require('express');
-const reportDailyRents = require('../controllers/reportDailyRents');
-const reportDailyReturns = require('../controllers/reportDailyReturns');
+const reportDailyRents = require('../controllers/error').reportDailyRents;
+const reportDailyReturns = require('../controllers/error').reportDailyReturns;
 
 const router = express.Router();
 

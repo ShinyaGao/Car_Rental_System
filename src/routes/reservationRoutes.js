@@ -1,10 +1,10 @@
 const express = require('express');
-const createReservation = require('../controllers/createReservation');
+const createReservation = require('../controllers/error').createReservation;
 //const makeReservation = require('../controllers/makeReservation');
-const updateReservation = require('../controllers/updateReservation');
-const getReservation = require('../controllers/getReservation');
-const deleteReservation = require('../controllers/deleteReservation');
-const getAllReservations = require('../controllers/getAllReservations');
+const updateReservation = require('../controllers/error').updateReservation;
+const getReservation = require('../controllers/error').getReservation;
+const deleteReservation = require('../controllers/error').deleteReservation;
+const getAllReservations = require('../controllers/error').getAllReservations;
 
 const router = express.Router();
 

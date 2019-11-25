@@ -1,9 +1,9 @@
 const express = require('express');
-const createCustomer = require('../controllers/createCustomer');
-const getAllCustomers = require('../controllers/getAllCustomers');
-const getCustomer = require('../controllers/getCustomer');
-const updateCustomer = require('../controllers/updateCustomer');
-const deleteCustomer = require('../controllers/deleteCustomer');
+const createCustomer = require('../controllers/error').createCustomer;
+const getAllCustomers = require('../controllers/error').getAllCustomers;
+const getCustomer = require('../controllers/error').getCustomer;
+const updateCustomer = require('../controllers/error').updateCustomer;
+const deleteCustomer = require('../controllers/error').deleteCustomer;
 
 
 const router = express.Router();
