@@ -1,18 +1,20 @@
 const express = require('express');
 const createVehicle = require('../controllers/createVehicle');
-//const getReturn = require('../controllers/getReturn');
-//const deleteReturn = require('../controllers/deleteReturn');
-//const viewVehicles = require('../controllers/viewVehicles');
+const getVehicle = require('../controllers/getVehicle');
+const deleteVehicle = require('../controllers/deleteVehicle');
+const updateVehicle = require('../controllers/updateVehicle');
+const getAllVehicles = require('../controllers/getAllVehicles');
 
 const router = express.Router();
 
 router
     .route('/')
-    //.get(viewVehicles)
+    .get(getAllVehicles)
     .post(createVehicle);
-//router
-  //  .route('/:id')
-   // .get(getReturn)
-   // .delete(deleteReturn);
+router
+   .route('/:id')
+   .get(getVehicle)
+    .put(updateVehicle)
+   .delete(deleteVehicle);
 
 module.exports = router;
