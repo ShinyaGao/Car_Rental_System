@@ -54,14 +54,7 @@ const rentVehicle = async(req, res, next) => {
             INSERT INTO rents VALUES ('${rentId}', '${vid}', '${newLicense}', STR_TO_DATE('${newStart}', "%y-%m-%d"), 
                                       STR_TO_DATE('${newEnd}', "%y-%m-%d"), '${newConfNo}')
             `);
-        const value = {
-            'type': newType,
-            'location': newLocation,
-            'fromDate': newStart,
-            'toDate': newEnd,
-            'confNo': newConfNo
-        };
-        res.status(200).json(value);
+        res.status(200).json({newType, newLocation, newStart, newEnd, newConfNo});
 
     } else {
         let results = await database.query(`
@@ -83,7 +76,7 @@ const rentVehicle = async(req, res, next) => {
     `);
         results = JSON.parse(JSON.stringify(results));
         if (results[0].length !== 0) {
-            const vid = results[0].vehicleLicense; // get vehicle ID, since vehicle not yet implemented, not sure if this'd work
+            const vid = results[0][0].vehicleLicense;
             await database.query(`
             UPDATE vehicles
             SET    status = "rented"
@@ -94,14 +87,7 @@ const rentVehicle = async(req, res, next) => {
             INSERT INTO rents VALUES ('${rentId}', '${vid}', '${dLicense}', STR_TO_DATE('${fromDate}', "%y-%m-%d"), 
                                       STR_TO_DATE('${toDate}', "%y-%m-%d"), NULL)
             `);
-            const value = {
-                'type': type,
-                'location': loc,
-                'fromDate': fromDate,
-                'toDate': toDate,
-                'confNo': null
-            };
-            res.status(200).json(value);
+            res.status(200).json({type, loc, fromDate, toDate, null});
         } else {
             res.status(200).json("Desired vehicle not available");
         }

@@ -68,17 +68,7 @@ const makeReservation = async(req, res, next) => {
             INSERT INTO customers VALUES ('${name}', '${phone}', '${dLicense}')
             `);
         }
-        const value = {
-            'confNo': confNo,
-            'type': type,
-            'location': location,
-            'fromDate': fromDate,
-            'toDate':toDate,
-            'dLicense':dLicense,
-            'name':name,
-            'phone':phone
-        };
-        res.status(200).json(value); // needs to change, have to add details that have been entered by user
+        res.status(200).json({confNo, type, location, fromDate, toDate, dLicense, name, phone});
     }
     else {
         res.status(200).json("Sorry, but your desired vehicle is not available at the moment.");

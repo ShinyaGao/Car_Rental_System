@@ -70,9 +70,10 @@ const viewVehicles = async(req, res, next) => {
           SELECT * FROM vehicles AS V
           ${timeB})
     `);
-    // what do we do with count?
+    count = JSON.parse(JSON.stringify(count));
+    const num = count[0][0]['COUNT(*)'];
 
-    res.status(200).json(vehicleData);
+    res.status(200).json({vehicleData, num});
 };
 
 module.exports = viewVehicles;
