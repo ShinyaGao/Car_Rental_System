@@ -1,5 +1,6 @@
 const express = require('express');
 const createReservation = require('../controllers/createReservation');
+//const makeReservation = require('../controllers/makeReservation');
 const updateReservation = require('../controllers/updateReservation');
 const getReservation = require('../controllers/getReservation');
 const deleteReservation = require('../controllers/deleteReservation');

@@ -1,5 +1,5 @@
 const database = require('../db').getDb();
-const fs = require('fs');
+//const fs = require('fs');
 
 const createVehicle = async (req, res, next) => {
     // prepare query
@@ -17,7 +17,7 @@ const createVehicle = async (req, res, next) => {
     await database.query(
         `
                 CREATE TABLE IF NOT EXISTS vehicles(
-                    vehicleLicence VARCHAR(50) PRIMARY KEY,
+                    vehicleLicense VARCHAR(50) PRIMARY KEY,
                     make VARCHAR(50),
                     model VARCHAR(50),
                     year YEAR,
@@ -31,24 +31,11 @@ const createVehicle = async (req, res, next) => {
         `
     );
 
-    //
-    // const vehicleTypes = JSON.parse(fs.readFileSync('data/vehicleTypes.json', 'utf8'));
-    // let vehicleTypesQuery = '';
-    // for (const vehicleType of vehicleTypes) {
-    //     const { vehicleTypeName, dayRate } = vehicleType;
-    //     vehicleTypesQuery += `
-    //        INSERT INTO vehicleTypes(vehicleTypeName, dayRate)
-    //        VALUES("${vehicleTypeName}", ${dayRate});
-    //     `;
-    // }
-    // //console.log();
-    // await database.query(vehicleTypesQuery);
-
-
+    console.log(`${vehicleLicense}`);
     await database.query(
         `
             INSERT INTO vehicles(vehicleLicense, make, model, year, color, status, vehicleTypeName, location, city)
-            VALUES(${vehicleLicense}, "${make}", "${model}", ${year}, "${color}", "${status}", "${vehicleTypeName}", "${location}", "${city}");
+            VALUES("${vehicleLicense}", "${make}", "${model}", "${year}", "${color}", "${status}", "${vehicleTypeName}", "${location}", "${city}");
         `
     );
 
