@@ -15,7 +15,7 @@ const createRent = async (req, res, next) => {
             fromDate DATE NOT NULL,
             toDate DATE NOT NULL,
             confNum VARCHAR(255) UNIQUE,
-            CONSTRAINT rent_vehicle FOREIGN KEY (vehicleLicence) REFERENCES vehicles(vehicleLicence) ON DELETE CASCADE,
+            CONSTRAINT rent_vehicle FOREIGN KEY (vehicleLicense) REFERENCES vehicles(vehicleLicense) ON DELETE CASCADE,
             CONSTRAINT rent_customer FOREIGN KEY (driverLicense) REFERENCES customers(driverLicense) ON DELETE CASCADE,
             CONSTRAINT rent_reservation FOREIGN KEY (confNum) REFERENCES reservations(confNum) ON DELETE CASCADE
             

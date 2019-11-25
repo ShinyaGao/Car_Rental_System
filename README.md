@@ -15,4 +15,23 @@ This is a quick guide to setup the coding environment for our project.
    `npm install `
    
    `npm install moments`
+   
+4. For FrontEnd:
 
+    Type in  `git clone https://github.com/Max980109/CarRent_FrontEnd.git`
+    
+    Download Yarn
+    
+            https://yarnpkg.com/lang/en/docs/install/#windows-stable
+            
+    Run:
+    
+    `yarn install`
+    
+    `yarn start`
+    
+5. Visit `localhost:5000` in your browser
+   
+6. Acknowledgement:
+
+    We thank `Chuntong Gao` for providing high-level design guidance and additional help with debugging
