@@ -10,7 +10,7 @@ const router = express.Router();
 
 router
     .route('/')
-    .post(createCustomer)//get post->create put->modify delete
+    .post(createCustomer)
     .get(getAllCustomers);
 
 router

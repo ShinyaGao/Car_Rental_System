@@ -25,7 +25,6 @@ const reportDailyReturns = async (req, res, next) => {
         if (dailyReturns.length > 0)
             report.push({ branch, dailyReturns: [...dailyReturns] });
     }
-    // eslint-disable-next-line no-console
     res.status(200).json(report);
 };
 

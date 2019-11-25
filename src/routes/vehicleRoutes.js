@@ -1,6 +1,5 @@
 const express = require('express');
 const createVehicle = require('../controllers/error').createVehicle;
-// const getVehicle = require('../controllers/getVehicle');
 const getVehicle = require('../controllers/error').getVehicle;
 const deleteVehicle = require('../controllers/error').deleteVehicle;
 const updateVehicle = require('../controllers/error').updateVehicle;

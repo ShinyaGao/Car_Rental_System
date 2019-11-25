@@ -9,7 +9,6 @@ const tryAsync = asyncFn => {
             if (err instanceof SuperRentError)
                 res.status(err.statusCode).send({ message: err.message });
             else {
-                // eslint-disable-next-line no-console
                 console.log(err);
                 res.status(500).send({
                     message: 'Please check your internet connection'

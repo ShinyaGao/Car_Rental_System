@@ -2,7 +2,6 @@ const express = require('express');
 const createRent = require('../controllers/error').createRent;
 const getAllRents = require('../controllers/error').getAllRents;
 const getRent = require('../controllers/error').getRent;
-//const validateRent = require('../controllers/validateRent');
 const updateRent = require('../controllers/error').updateRent;
 const deleteRent = require('../controllers/error').deleteRent;
 

@@ -7,6 +7,7 @@ const vehicleRoutes = require('./routes/vehicleRoutes');
 const rentRoutes = require('./routes/rentRoutes');
 const returnRoutes = require('./routes/returnRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
+const reportRoutes = require('./routes/reservationRoutes');
 
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -34,6 +35,7 @@ app.use('/rents', rentRoutes);
 app.use('/returns', returnRoutes);
 app.use('/reservations', reservationRoutes);
 app.use('/vehicles', vehicleRoutes);
+app.use('/reports', reportRoutes);
 
 
 module.exports = app;

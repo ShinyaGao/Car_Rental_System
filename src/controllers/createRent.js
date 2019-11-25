@@ -18,23 +18,32 @@ const createRent = async (req, res, next) => {
             CONSTRAINT rent_vehicle FOREIGN KEY (vehicleLicense) REFERENCES vehicles(vehicleLicense) ON DELETE CASCADE,
             CONSTRAINT rent_customer FOREIGN KEY (driverLicense) REFERENCES customers(driverLicense) ON DELETE CASCADE,
             CONSTRAINT rent_reservation FOREIGN KEY (confNum) REFERENCES reservations(confNum) ON DELETE CASCADE
-            
+
     )`);
 
-
-    await database.query(
-        `
+    if (confNum !== null) {
+        await database.query(
+            `
              INSERT INTO rents(rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum)
                 VALUES("${rentId}", "${vehicleLicense}", "${driverLicense}",
                         STR_TO_DATE("${fromDate}", "%Y-%m-%d"), STR_TO_DATE("${toDate}", "%Y-%m-%d"),
                         "${confNum}");
         `
-    );
+        );
+        res.status(201).json({rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum});
 
+    } else {
+        await database.query(
+            `
+             INSERT INTO rents(rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum)
+                VALUES("${rentId}", "${vehicleLicense}", "${driverLicense}",
+                        STR_TO_DATE("${fromDate}", "%Y-%m-%d"), STR_TO_DATE("${toDate}", "%Y-%m-%d"),
+                        NULL);
+        `
+        );
+        res.status(201).json({rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum});
+    }
 
-    // send response
-    res.status(201).json({rentId, vehicleLicense, driverLicense, fromDate, toDate, confNum});
 
 };
-
-module.exports = createRent;
+ module.exports = createRent;

@@ -25,14 +25,7 @@ const deleteVehicle = tryAsync(require('./deleteVehicle'));
 const createVehicle = tryAsync(require('./createVehicle'));
 const reportDailyRents = tryAsync(require('./reportDailyRents'));
 const reportDailyReturns = tryAsync(require('./reportDailyReturns'));
-// const viewVehicles = tryAsync(require('./viewVehicles'));
-// const makeReservation = tryAsync(require('./makeReservation'));
-// const rentVehicle = tryAsync(require('./rentVehicle'));
-// const returnVehicle = tryAsync(require('./returnVehicle'));
-// const rentReport = tryAsync(require('./rentReport'));
-// const rentBranchReport = tryAsync(require('./rentBranchReport'));
-// const returnReport = tryAsync(require('./returnReport'));
-// const returnBranchReport = tryAsync(require('./returnBranchReport'));
+
 
 
 
@@ -66,12 +59,4 @@ module.exports = {
     createVehicle,
     reportDailyRents,
     reportDailyReturns,
-    // viewVehicles,
-    // makeReservation,
-    // rentVehicle,
-    // returnVehicle,
-    // rentReport,
-    // rentBranchReport,
-    // returnReport,
-    // returnBranchReport
 };
