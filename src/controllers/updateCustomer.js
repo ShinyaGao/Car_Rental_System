@@ -8,14 +8,6 @@ const updateCustomer = async (req, res, next) => {
     const { driverLicense, phone, name } = req.body;
 
     let results;
-    // check if driversLicence already exists
-    // if (prevDriverLicense !== driverLicense) {
-    //     results = await database.query(
-    //         `SELECT COUNT(*) FROM customers WHERE driverLicense = "${driverLicense}";`
-    //     );
-    //     results = JSON.parse(JSON.stringify(results));
-    //     const count = results[0][0]['COUNT(*)'];
-    // }
 
     // send query
     await database.query(
