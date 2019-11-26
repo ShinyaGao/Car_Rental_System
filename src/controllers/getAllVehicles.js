@@ -14,34 +14,47 @@ const getAllVehicles = async (req, res, next) => {
         : null;
     const fromDate = req.query.fromDate ? req.query.fromDate : null;
     const toDate = req.query.toDate ? req.query.toDate : null;
-    query += ` 
-        WHERE V.city <> "just a placeholder"
-               ${city !== null ? ` AND V.city = "${city}"` : ''}
-               ${
-        status !== null && status !== 'all'
-            ? ` AND V.status = "${status}"`
-            : ''
+    let cityInput;
+    if (city !== null) {
+        cityInput = `AND V.city = "${city}"`;
+    } else {
+        cityInput = '';
     }
-               ${
-        vehicleTypeName !== null
-            ? ` AND V.vehicleTypeName = "${vehicleTypeName}"`
-            : ''
-    }
-               ${
-        fromDate !== null && toDate !== null
-            ? ` AND V.status <> "maintenance"
-                AND V.vehicleLicense NOT IN 
-                (SELECT R.vehicleLicense from rents as R WHERE "${fromDate}" < R.toDate AND "${toDate}" > R.fromDate)`
-            : ''
-    }
-    `;
+    console.log(`cityinput is null? ${cityInput === null}`);
+    console.log(`cityinput is undfined? ${cityInput === undefined}`);
+    console.log(`cityinput is empty string? ${cityInput === ''}`);
 
-    // prepare query: sorting
-    if (req.query._sort && req.query._order) {
-        const sort = req.query._sort === 'id' ? 'vehicleLicense' : req.query._sort;
-        const order = req.query._order;
-        query += ` ORDER BY ${sort} ${order}`;
+    let statusInput = '';
+    if (status !== null && status !== 'all') {
+        statusInput = ` AND V.status = "${status}"`;
     }
+    let vehicleTypeNameInput;
+    if (vehicleTypeName !== null) {
+        vehicleTypeNameInput = ` AND V.vehicleTypeName = "${vehicleTypeName}"`;
+    } else {
+        vehicleTypeNameInput = '';
+    }
+    let dateInput;
+    if (fromDate !== null && toDate !== null) {
+        dateInput = ` AND V.status <> "maintenance"
+                AND V.vehicleLicense NOT IN 
+                (SELECT R.vehicleLicense from rents as R WHERE "${fromDate}" < R.toDate AND "${toDate}" > R.fromDate)`;
+    } else {
+        dateInput = '';
+    }
+
+    query += 'WHERE V.city <> "wtf"';
+    console.log(`will concat cityinput to query, cityinput is ${cityInput}`);
+    query += cityInput;
+    console.log(`will concat statusInput to query, statusInput is ${statusInput}`);
+    query += statusInput;
+    console.log(`will concat vehicleTypeNameInput to query, vehicleTypeNameInput is ${vehicleTypeNameInput}`);
+    query += vehicleTypeNameInput;
+    console.log(`will concat dateInput to query, dateInput is ${dateInput}`);
+    query += dateInput;
+    console.log(query);
+
+
 
     // send query
     let results = await database.query(query);
@@ -51,12 +64,7 @@ const getAllVehicles = async (req, res, next) => {
     let vehicles = results[0];
 
 
-    // pagination
-    if (req.query._start && req.query._end) {
-        const start = req.query._start;
-        const end = req.query._end;
-        vehicles = vehicles.slice(start, end);
-    }
+
 
     vehicles = vehicles.map(vehicle => {
         vehicle.id = vehicle.vehicleLicense;

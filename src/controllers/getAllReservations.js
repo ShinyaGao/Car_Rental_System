@@ -15,20 +15,7 @@ const getAllReservations = async (req, res, next) => {
     if (req.query.vehicleTypeName)
         query += ` AND vehicleTypeName = "${req.query.vehicleTypeName}"`;
 
-    // prepare query: sorting
-    if (req.query._sort && req.query._order) {
-        const sort = req.query._sort === 'id' ? 'confNum' : req.query._sort;
-        const order = req.query._order;
-        query += ` ORDER BY ${sort} ${order}`;
-    }
 
-    // prepare query: pagination
-    if (req.query._start && req.query._end) {
-        const start = req.query._start;
-        const end = req.query._end;
-        const numRows = end - start;
-        query += ` LIMIT ${start}, ${numRows}`;
-    }
 
     // send query
     let results = await database.query(query);

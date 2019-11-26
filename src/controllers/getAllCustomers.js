@@ -4,12 +4,6 @@ const getAllCustomers = async (req, res, next) => {
     // prepare query
     let query = 'SELECT * FROM customers';
 
-    // prepare query: sorting
-    if (req.query._sort && req.query._order) {
-        const sort = req.query._sort === 'id' ? 'driverLicense' : req.query._sort;
-        const order = req.query._order;
-        query += ` ORDER BY ${sort} ${order}`;
-    }
 
     // prepare query
     if (req.query._start && req.query._end) {
