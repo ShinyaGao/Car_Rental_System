@@ -30,7 +30,7 @@ This is a quick guide to setup the coding environment for our project.
     
     `yarn start`
     
-5. Visit `localhost:5000` in your browser
+5. Visit `localhost:5000` in your browser (Please use Chrome for better experience)
    
 6. Acknowledgement:
 
